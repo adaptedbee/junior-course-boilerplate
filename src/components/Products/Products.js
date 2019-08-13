@@ -4,15 +4,15 @@ import products from '../../products.json';
 import './Products.css';
 import ProductItem from 'csssr-school-product-card';
 
+const PRODUCTS_LIMIT = 3;
+
 const ratingComponent = ({ isFilled }) => {
   return <div className={isFilled ? "starFill" : ""} />;
 };
 
 const Products = props => {
-  const productsLimit = 3;
-  
   return <ul className="products">
-    {products.slice(0, productsLimit).map((item, index) => 
+    {products.slice(0, PRODUCTS_LIMIT).map((item, index) => 
       <ProductItem
         key={item.id}
         isInStock={item.isInStock}
