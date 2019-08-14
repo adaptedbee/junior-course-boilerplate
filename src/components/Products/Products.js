@@ -13,14 +13,10 @@ const ratingComponent = ({ isFilled }) => {
 };
 
 class Products extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <ul className="products">
-        {products.slice(0, PRODUCTS_LIMIT).map((item, index) => 
+        {products.slice(0, PRODUCTS_LIMIT).map((item) => 
           <ProductItem
             key={item.id}
             isInStock={item.isInStock}

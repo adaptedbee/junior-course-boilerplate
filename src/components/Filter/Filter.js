@@ -19,7 +19,7 @@ class Filter extends React.Component {
   parsePriceInput(value) {
     const numberValue = Number(value);
     if (numberValue <= 0) {
-      return null;
+      return 0;
     } else {
       return numberValue;
     }
