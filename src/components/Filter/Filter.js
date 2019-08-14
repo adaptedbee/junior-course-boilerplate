@@ -1,17 +1,10 @@
 import React from 'react';
 
 import './Filter.css';
-import products from '../../products.json';
 
 class Filter extends React.Component {
   constructor(props) {
     super(props);
-
-    const productsPrices = products.map(item => item.price);
-    this.state = {
-      minPrice: Math.min(...productsPrices),
-      maxPrice: Math.max(...productsPrices)
-    };
 
     this.minPriceInput = React.createRef();
     this.maxPriceInput = React.createRef();
@@ -19,10 +12,7 @@ class Filter extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({
-      minPrice: this.parsePriceInput(this.minPriceInput.current.value),
-      maxPrice: this.parsePriceInput(this.maxPriceInput.current.value),
-    });
+    this.props.updatePriceFilter(this.parsePriceInput(this.minPriceInput.current.value), this.parsePriceInput(this.maxPriceInput.current.value));
   }
 
   parsePriceInput(value) {
@@ -48,7 +38,7 @@ class Filter extends React.Component {
             className="filter-form__text-input filter-form__text-input--price" 
             id="from-price"
             type="text"
-            defaultValue={this.state.minPrice}
+            defaultValue={this.props.minPrice}
             ref={this.minPriceInput} />
           <label 
             className="filter-form__label" 
@@ -57,15 +47,12 @@ class Filter extends React.Component {
             className="filter-form__text-input filter-form__text-input--price" 
             id="to-price" 
             type="text"
-            defaultValue={this.state.maxPrice}
+            defaultValue={this.props.maxPrice}
             ref={this.maxPriceInput} />
         </div>
         <button 
           className="filter-form__button"
           type="submit">Применить</button>
-
-        <p>{this.state.minPrice}</p>
-        <p>{this.state.maxPrice}</p>
       </form>
     );
   }
