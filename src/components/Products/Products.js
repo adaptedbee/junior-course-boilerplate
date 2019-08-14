@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { logger } from 'csssr-school-utils';
 
 import ProductItem from 'csssr-school-product-card';
 
 import products from '../../products.json';
 import './Products.css';
-import PropTypes from 'prop-types';
 
 const PRODUCTS_LIMIT = 3;
 
@@ -13,6 +14,11 @@ const ratingComponent = ({ isFilled }) => {
 };
 
 class Products extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    logger.call(this, this.constructor.name, nextProps, nextState);
+    return true;
+  }
+
   render() {
     return (
       <ul className="products">

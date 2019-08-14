@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { logger } from 'csssr-school-utils';
 
 import './Filter.css';
-import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
   constructor(props) {
@@ -9,6 +10,11 @@ class Filter extends React.Component {
 
     this.minPriceInput = React.createRef();
     this.maxPriceInput = React.createRef();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    logger.call(this, this.constructor.name, nextProps, nextState);
+    return true;
   }
 
   handleSubmit = (event) => {
