@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Filter.css';
+import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
   constructor(props) {
@@ -57,5 +58,11 @@ class Filter extends React.Component {
     );
   }
 }
+
+Filter.propTypes = {
+  minPrice: PropTypes.number,
+  maxPrice: PropTypes.number,
+  updatePriceFilter: PropTypes.func
+};
 
 export default Filter;

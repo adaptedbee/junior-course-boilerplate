@@ -1,8 +1,10 @@
 import React from 'react';
 
+import ProductItem from 'csssr-school-product-card';
+
 import products from '../../products.json';
 import './Products.css';
-import ProductItem from 'csssr-school-product-card';
+import PropTypes from 'prop-types';
 
 const PRODUCTS_LIMIT = 3;
 
@@ -35,5 +37,10 @@ class Products extends React.Component {
     );
   }
 }
+
+Products.propTypes = {
+  minPrice: PropTypes.number,
+  maxPrice: PropTypes.number
+};
 
 export default Products;
