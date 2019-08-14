@@ -16,7 +16,23 @@ class Products extends React.Component {
   render() {
     return (
       <ul className="products">
-        {products.slice(0, PRODUCTS_LIMIT).map((item) => 
+        {products
+          .filter(item => {
+            if (this.props.minPrice !== 0) {
+              return item.price >= this.props.minPrice;
+            } else {
+              return item;
+            }
+          })
+          .filter(item => {
+            if (this.props.maxPrice !== 0) {
+              return item.price <= this.props.maxPrice;
+            } else {
+              return item;
+            }
+          })
+          .slice(0, PRODUCTS_LIMIT)
+          .map((item) => 
           <ProductItem
             key={item.id}
             isInStock={item.isInStock}
