@@ -23,18 +23,19 @@ class Products extends React.Component {
         {products
           .filter(item => item.price >= this.props.minPrice && item.price <= this.props.maxPrice)
           .map((item) => 
-          <div className="product">
+          <div 
+            className="product"
+            key={item.id}>
             <ProductItem
-            key={item.id}
-            isInStock={item.isInStock}
-            img={item.img}
-            title={item.title}
-            price={item.price + ' ₽'}
-            subPriceContent={item.subPriceContent}
-            maxRating={item.maxRating}
-            rating={item.rating}
-            ratingComponent={ratingComponent}
-          />
+              isInStock={item.isInStock}
+              img={item.img}
+              title={item.title}
+              price={item.price + ' ₽'}
+              subPriceContent={item.subPriceContent}
+              maxRating={item.maxRating}
+              rating={item.rating}
+              ratingComponent={ratingComponent}
+            />
           </div>
         )}
       </ul>
