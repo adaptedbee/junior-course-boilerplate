@@ -51,7 +51,9 @@ class Filter extends React.Component {
         <div className="filter-form__price-range-wrapper">
           <label 
             className="filter-form__label" 
-            htmlFor="from-price">от</label>
+            htmlFor="from-price">
+            от
+          </label>
           <input 
             className="filter-form__text-input filter-form__text-input--price" 
             id="from-price"
@@ -60,7 +62,9 @@ class Filter extends React.Component {
             ref={this.minPriceInput} />
           <label 
             className="filter-form__label" 
-            htmlFor="to-price">до</label>
+            htmlFor="to-price">
+            до
+          </label>
           <input 
             className="filter-form__text-input filter-form__text-input--price" 
             id="to-price" 
@@ -70,7 +74,9 @@ class Filter extends React.Component {
         </div>
         <button 
           className="filter-form__button"
-          type="submit">Применить</button>
+          type="submit">
+          Применить
+        </button>
       </form>
     );
   }
