@@ -7,8 +7,6 @@ import ProductItem from 'csssr-school-product-card';
 import products from '../../products.json';
 import './Products.css';
 
-const PRODUCTS_LIMIT = 3;
-
 const ratingComponent = ({ isFilled }) => {
   return <div className={isFilled ? "starFill" : ""} />;
 };
@@ -37,7 +35,6 @@ class Products extends React.Component {
               return item;
             }
           })
-          .slice(0, PRODUCTS_LIMIT)
           .map((item) => 
           <ProductItem
             key={item.id}
