@@ -35,7 +35,9 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Headline />
+        <Headline
+          size={1}
+          text={'Список товаров'} />
         <div className="container">
           <div className="container__left">
             <Filter 

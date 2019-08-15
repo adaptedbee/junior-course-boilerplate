@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { logger } from 'csssr-school-utils';
 
+import Headline from '../Headline/Headline.js';
+
 import './Filter.css';
 
 class Filter extends React.Component {
@@ -43,7 +45,9 @@ class Filter extends React.Component {
       <form 
         className="filter-form"
         onSubmit={this.handleSubmit}>
-        <h3 className="filter-form__headline">Цена</h3>
+        <Headline
+          size={3}
+          text={'Цена'} />
         <div className="filter-form__price-range-wrapper">
           <label 
             className="filter-form__label" 
