@@ -36,7 +36,8 @@ class Products extends React.Component {
             }
           })
           .map((item) => 
-          <ProductItem
+          <div className="product">
+            <ProductItem
             key={item.id}
             isInStock={item.isInStock}
             img={item.img}
@@ -47,6 +48,7 @@ class Products extends React.Component {
             rating={item.rating}
             ratingComponent={ratingComponent}
           />
+          </div>
         )}
       </ul>
     );
