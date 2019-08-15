@@ -19,12 +19,19 @@ class Filter extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.updatePriceFilter(this.parsePriceInput(this.minPriceInput.current.value), this.parsePriceInput(this.maxPriceInput.current.value));
+    const minPrice = this.parsePriceInput(this.minPriceInput.current.value);
+    const maxPrice = this.parsePriceInput(this.maxPriceInput.current.value);
+    this.props.updatePriceFilter(minPrice, maxPrice);
   }
 
   parsePriceInput(value) {
+    if (value === '') {
+      return null;
+    }
     const numberValue = Number(value);
-    if (numberValue <= 0) {
+    if (isNaN(numberValue)) {
+      return null;
+    } else if (numberValue <= 0) {
       return 0;
     } else {
       return numberValue;
