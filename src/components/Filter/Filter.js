@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { logger } from 'csssr-school-utils';
+import toInt from 'csssr-school-utils/src/toInt';
 
 import Headline from '../Headline/Headline.js';
 
@@ -21,23 +22,9 @@ class Filter extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const minPrice = this.parsePriceInput(this.minPriceInput.current.value);
-    const maxPrice = this.parsePriceInput(this.maxPriceInput.current.value);
+    const minPrice = toInt(this.minPriceInput.current.value);
+    const maxPrice = toInt(this.maxPriceInput.current.value);
     this.props.updatePriceFilter(minPrice, maxPrice);
-  }
-
-  parsePriceInput(value) {
-    if (value === '') {
-      return null;
-    }
-    const numberValue = Number(value);
-    if (isNaN(numberValue)) {
-      return null;
-    } else if (numberValue <= 0) {
-      return 0;
-    } else {
-      return numberValue;
-    }
   }
 
   render() {

@@ -20,16 +20,10 @@ class App extends React.Component {
   }
 
   updatePriceFilter = (minPrice, maxPrice) => {
-    if (minPrice !== null) {
-      this.setState({
-        minPrice: minPrice
-      });
-    }
-    if (maxPrice !== null && maxPrice !== 0) {
-      this.setState({
-        maxPrice: maxPrice
-      });
-    }
+    this.setState({
+      minPrice: minPrice,
+      maxPrice: maxPrice
+    });
   }
   
   render() {
