@@ -31,18 +31,21 @@ class App extends React.Component {
       <React.Fragment>
         <Headline
           size={1}
-          text={'Список товаров'} />
+          text={'Список товаров'}
+        />
         <div className="container">
           <div className="container__left">
             <Filter 
               minPrice={this.state.minPrice}
               maxPrice={this.state.maxPrice}
-              updatePriceFilter={this.updatePriceFilter} />
+              updatePriceFilter={this.updatePriceFilter}
+            />
           </div>
           <div className="container__center">
             <Products
               minPrice={this.state.minPrice}
-              maxPrice={this.state.maxPrice} />
+              maxPrice={this.state.maxPrice}
+            />
           </div>
         </div>
       </React.Fragment>

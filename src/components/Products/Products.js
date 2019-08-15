@@ -25,7 +25,8 @@ class Products extends React.Component {
           .map((item) => 
           <div 
             className="product"
-            key={item.id}>
+            key={item.id}
+          >
             <ProductItem
               isInStock={item.isInStock}
               img={item.img}

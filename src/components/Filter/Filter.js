@@ -31,14 +31,17 @@ class Filter extends React.Component {
     return (
       <form 
         className="filter-form"
-        onSubmit={this.handleSubmit}>
+        onSubmit={this.handleSubmit}
+      >
         <Headline
           size={3}
-          text={'Цена'} />
+          text={'Цена'}
+        />
         <div className="filter-form__price-range-wrapper">
           <label 
             className="filter-form__label" 
-            htmlFor="from-price">
+            htmlFor="from-price"
+          >
             от
           </label>
           <input 
@@ -46,10 +49,12 @@ class Filter extends React.Component {
             id="from-price"
             type="text"
             defaultValue={this.props.minPrice}
-            ref={this.minPriceInput} />
+            ref={this.minPriceInput}
+          />
           <label 
             className="filter-form__label" 
-            htmlFor="to-price">
+            htmlFor="to-price"
+          >
             до
           </label>
           <input 
@@ -57,11 +62,13 @@ class Filter extends React.Component {
             id="to-price" 
             type="text"
             defaultValue={this.props.maxPrice}
-            ref={this.maxPriceInput} />
+            ref={this.maxPriceInput}
+          />
         </div>
         <button 
           className="filter-form__button"
-          type="submit">
+          type="submit"
+        >
           Применить
         </button>
       </form>
