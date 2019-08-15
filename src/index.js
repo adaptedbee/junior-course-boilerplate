@@ -25,7 +25,7 @@ class App extends React.Component {
         minPrice: minPrice
       });
     }
-    if (maxPrice !== null) {
+    if (maxPrice !== null && maxPrice !== 0) {
       this.setState({
         maxPrice: maxPrice
       });

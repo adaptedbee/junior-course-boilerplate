@@ -21,20 +21,7 @@ class Products extends React.Component {
     return (
       <ul className="products">
         {products
-          .filter(item => {
-            if (this.props.minPrice !== 0) {
-              return item.price >= this.props.minPrice;
-            } else {
-              return item;
-            }
-          })
-          .filter(item => {
-            if (this.props.maxPrice !== 0) {
-              return item.price <= this.props.maxPrice;
-            } else {
-              return item;
-            }
-          })
+          .filter(item => item.price >= this.props.minPrice && item.price <= this.props.maxPrice)
           .map((item) => 
           <div className="product">
             <ProductItem
