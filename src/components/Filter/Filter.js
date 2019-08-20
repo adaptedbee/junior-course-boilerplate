@@ -5,6 +5,7 @@ import { logger } from 'csssr-school-utils';
 import Headline from '../Headline/Headline.js';
 import PriceInput from '../PriceInput/PriceInput.js';
 import Discount from 'csssr-school-input-discount';
+import shallowCompare from 'react-addons-shallow-compare';
 
 import './Filter.css';
 
@@ -17,8 +18,10 @@ class Filter extends React.Component {
     };
   }
   shouldComponentUpdate(nextProps, nextState) {
-    logger.call(this, this.constructor.name, nextProps, nextState);
-    return true;
+    if (shallowCompare(this, nextProps, nextState)) {
+      logger.call(this, this.constructor.name, nextProps, nextState);
+    }
+    return shallowCompare(this, nextProps, nextState);
   }
 
   handleMinPriceChange = (value) => {
