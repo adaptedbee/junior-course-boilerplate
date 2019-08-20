@@ -4,10 +4,18 @@ import { logger } from 'csssr-school-utils';
 
 import Headline from '../Headline/Headline.js';
 import PriceInput from '../PriceInput/PriceInput.js';
+import Discount from 'csssr-school-input-discount';
 
 import './Filter.css';
 
 class Filter extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      discountValue: 0
+    };
+  }
   shouldComponentUpdate(nextProps, nextState) {
     logger.call(this, this.constructor.name, nextProps, nextState);
     return true;
@@ -18,6 +26,11 @@ class Filter extends React.Component {
   }
   handleMaxPriceChange = (value) => {
     this.props.updatePriceFilter(this.props.minPrice, value);
+  }
+  handleDiscountChange = (event) => {
+    this.setState({
+      discountValue: event.target.value
+    });
   }
 
   render() {
@@ -39,12 +52,12 @@ class Filter extends React.Component {
             onPriceChange={this.handleMaxPriceChange}
           />
         </div>
-        {/* <button 
-          className="filter-form__button"
-          type="submit"
-        >
-          Применить
-        </button> */}
+        <Discount 
+          title="Скидка" 
+          name="sale" 
+          value={this.state.discountValue} 
+          onChange={this.handleDiscountChange} 
+        />
       </form>
     );
   }
