@@ -10,8 +10,21 @@ class Filter extends React.Component {
   constructor(props) {
     super(props);
 
-    this.minPriceInput = React.createRef();
-    this.maxPriceInput = React.createRef();
+    this.state = {
+      minPriceValue: this.props.minPrice,
+      maxPriceValue: this.props.maxPrice
+    };
+  }
+
+  handleMinPriceChange = (event) => {
+    this.setState({ 
+      minPriceValue: event.target.value 
+    });
+  }
+  handleMaxPriceChange = (event) => {
+    this.setState({
+      maxPriceValue: event.target.value
+    });
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -21,8 +34,8 @@ class Filter extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const parsedMinPrice = this.parsePriceInput(this.minPriceInput.current.value);
-    const parsedMaxPrice = this.parsePriceInput(this.maxPriceInput.current.value);
+    const parsedMinPrice = this.parsePriceInput(this.state.minPriceValue);
+    const parsedMaxPrice = this.parsePriceInput(this.state.maxPriceValue);
     const minPrice = parsedMinPrice !== null ? parsedMinPrice : this.props.minPrice;
     const maxPrice = parsedMaxPrice !== null ? parsedMaxPrice : this.props.maxPrice;
     this.props.updatePriceFilter(minPrice, maxPrice);
@@ -59,8 +72,8 @@ class Filter extends React.Component {
             className="filter-form__text-input filter-form__text-input--price" 
             id="from-price"
             type="text"
-            defaultValue={this.props.minPrice}
-            ref={this.minPriceInput}
+            value={this.state.minPriceValue}
+            onChange={this.handleMinPriceChange}
           />
           <label 
             className="filter-form__label" 
@@ -72,8 +85,8 @@ class Filter extends React.Component {
             className="filter-form__text-input filter-form__text-input--price" 
             id="to-price" 
             type="text"
-            defaultValue={this.props.maxPrice}
-            ref={this.maxPriceInput}
+            value={this.state.maxPriceValue}
+            onChange={this.handleMaxPriceChange}
           />
         </div>
         <button 
