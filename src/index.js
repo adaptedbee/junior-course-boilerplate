@@ -46,7 +46,7 @@ class App extends React.Component {
               maxPrice={this.state.maxPrice}
               discount={this.state.discount}
               updatePriceFilter={this.updatePriceFilter}
-              updateDiscount={this.discount}
+              updateDiscount={this.updateDiscount}
             />
           </div>
           <div className="container__center">

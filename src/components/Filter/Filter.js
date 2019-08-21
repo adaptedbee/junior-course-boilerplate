@@ -6,8 +6,11 @@ import Headline from '../Headline/Headline.js';
 import PriceInput from '../PriceInput/PriceInput.js';
 import Discount from 'csssr-school-input-discount';
 import shallowCompare from 'react-addons-shallow-compare';
+import withInputState from '../../hocs/withInputState.js';
 
 import './Filter.css';
+
+const DiscountWithState = withInputState(Discount);
 
 class Filter extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -46,7 +49,7 @@ class Filter extends React.Component {
             onChange={this.handleMaxPriceChange}
           />
         </div>
-        <Discount 
+        <DiscountWithState 
           title="Скидка" 
           name="sale" 
           value={this.props.discount} 
