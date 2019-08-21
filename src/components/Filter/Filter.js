@@ -10,13 +10,6 @@ import shallowCompare from 'react-addons-shallow-compare';
 import './Filter.css';
 
 class Filter extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      discountValue: 0
-    };
-  }
   shouldComponentUpdate(nextProps, nextState) {
     if (shallowCompare(this, nextProps, nextState)) {
       logger.call(this, this.constructor.name, nextProps, nextState);
@@ -30,10 +23,8 @@ class Filter extends React.Component {
   handleMaxPriceChange = (value) => {
     this.props.updatePriceFilter(this.props.minPrice, value);
   }
-  handleDiscountChange = (event) => {
-    this.setState({
-      discountValue: event.target.value
-    });
+  handleDiscountChange = (value) => {
+    this.props.updateDiscount(value);
   }
 
   render() {
@@ -46,19 +37,19 @@ class Filter extends React.Component {
         <div className="filter-form__price-range-wrapper">
           <label className="filter-form__label">от</label>
           <PriceInput 
-            defaultValue={this.props.minPrice}
-            onPriceChange={this.handleMinPriceChange}
+            value={this.props.minPrice}
+            onChange={this.handleMinPriceChange}
           />
           <label className="filter-form__label">до</label>
           <PriceInput
-            defaultValue={this.props.maxPrice}
-            onPriceChange={this.handleMaxPriceChange}
+            value={this.props.maxPrice}
+            onChange={this.handleMaxPriceChange}
           />
         </div>
         <Discount 
           title="Скидка" 
           name="sale" 
-          value={this.state.discountValue} 
+          value={this.props.discount} 
           onChange={this.handleDiscountChange} 
         />
       </form>
@@ -69,7 +60,9 @@ class Filter extends React.Component {
 Filter.propTypes = {
   minPrice: PropTypes.number,
   maxPrice: PropTypes.number,
-  updatePriceFilter: PropTypes.func
+  discount: PropTypes.number,
+  updatePriceFilter: PropTypes.func,
+  updateDiscount: PropTypes.func
 };
 
 export default Filter;
