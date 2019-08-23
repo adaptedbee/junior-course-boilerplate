@@ -1,25 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { logger } from 'csssr-school-utils';
 
 import Headline from '../Headline/Headline.js';
 import PriceInput from '../PriceInput/PriceInput.js';
 import Discount from 'csssr-school-input-discount';
-import shallowCompare from 'react-addons-shallow-compare';
 import withInputState from '../../hocs/withInputState.js';
+import logRender from '../../hocs/logRender.js';
 
 import './Filter.css';
 
 const DiscountWithState = withInputState(Discount);
 
 class Filter extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    if (shallowCompare(this, nextProps, nextState)) {
-      logger.call(this, this.constructor.name, nextProps, nextState);
-    }
-    return shallowCompare(this, nextProps, nextState);
-  }
-
   handleMinPriceChange = (value) => {
     this.props.updatePriceFilter(value, this.props.maxPrice);
   }
@@ -68,4 +60,4 @@ Filter.propTypes = {
   updateDiscount: PropTypes.func
 };
 
-export default Filter;
+export default logRender(Filter);

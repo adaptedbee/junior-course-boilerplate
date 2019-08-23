@@ -1,22 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatMoney, logger } from 'csssr-school-utils';
-
+import { formatMoney } from 'csssr-school-utils';
 import ProductItem from 'csssr-school-product-card';
 
 import products from '../../products.json';
 import './Products.css';
+import logRender from '../../hocs/logRender.js';
 
 const ratingComponent = ({ isFilled }) => {
   return <div className={isFilled ? "starFill" : ""} />;
 };
 
 class Products extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    logger.call(this, this.constructor.name, nextProps, nextState);
-    return true;
-  }
-
   formatPrice = (number) => {
     return formatMoney(number, 0, '.', ' ') + ' ₽';
   }
@@ -55,4 +50,4 @@ Products.propTypes = {
   discount: PropTypes.number
 };
 
-export default Products;
+export default logRender(Products);
