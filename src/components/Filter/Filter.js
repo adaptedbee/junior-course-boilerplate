@@ -26,8 +26,8 @@ class Filter extends React.Component {
   handleMaxPriceChange = (value) => {
     this.props.updatePriceFilter(this.props.minPrice, value);
   }
-  handleDiscountChange = (value) => {
-    this.props.updateDiscount(value);
+  handleDiscountChange = (event) => {
+    this.props.updateDiscount(Number(event.target.value));
   }
 
   render() {
