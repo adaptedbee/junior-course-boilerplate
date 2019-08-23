@@ -53,6 +53,7 @@ class App extends React.Component {
             <Products
               minPrice={this.state.minPrice}
               maxPrice={this.state.maxPrice}
+              discount={this.state.discount}
             />
           </div>
         </div>

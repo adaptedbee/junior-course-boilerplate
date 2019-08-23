@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { logger } from 'csssr-school-utils';
+import { formatMoney, logger } from 'csssr-school-utils';
 
 import ProductItem from 'csssr-school-product-card';
 
@@ -17,11 +17,16 @@ class Products extends React.Component {
     return true;
   }
 
+  formatPrice = (number) => {
+    return formatMoney(number, 0, '.', ' ') + ' ₽';
+  }
+
   render() {
     return (
       <ul className="products">
         {products
           .filter(item => item.price >= this.props.minPrice && item.price <= this.props.maxPrice)
+          .filter(item => this.props.discount === 0 || (item.oldPrice && (item.oldPrice/item.price) - 1 >= this.props.discount))
           .map((item) => 
           <div 
             className="product"
@@ -31,8 +36,8 @@ class Products extends React.Component {
               isInStock={item.isInStock}
               img={item.img}
               title={item.title}
-              price={item.price + ' ₽'}
-              subPriceContent={item.subPriceContent}
+              price={this.formatPrice(item.price)}
+              subPriceContent={item.oldPrice ? this.formatPrice(item.oldPrice) : ''}
               maxRating={item.maxRating}
               rating={item.rating}
               ratingComponent={ratingComponent}
@@ -46,7 +51,8 @@ class Products extends React.Component {
 
 Products.propTypes = {
   minPrice: PropTypes.number,
-  maxPrice: PropTypes.number
+  maxPrice: PropTypes.number,
+  discount: PropTypes.number
 };
 
 export default Products;
