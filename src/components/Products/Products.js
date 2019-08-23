@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { logger } from 'csssr-school-utils';
-
+import { formatMoney } from 'csssr-school-utils';
 import ProductItem from 'csssr-school-product-card';
 
 import products from '../../products.json';
 import './Products.css';
+import logRender from '../../hocs/logRender.js';
 
 const ratingComponent = ({ isFilled }) => {
   return <div className={isFilled ? "starFill" : ""} />;
 };
 
+const ProductWithLog = logRender(ProductItem);
+
 class Products extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    logger.call(this, this.constructor.name, nextProps, nextState);
-    return true;
+  formatPrice = (number) => {
+    return formatMoney(number, 0, '.', ' ') + ' ₽';
   }
 
   render() {
@@ -22,17 +23,18 @@ class Products extends React.Component {
       <ul className="products">
         {products
           .filter(item => item.price >= this.props.minPrice && item.price <= this.props.maxPrice)
+          .filter(item => this.props.discount === 0 || (item.oldPrice && (item.oldPrice/item.price) - 1 >= this.props.discount/100))
           .map((item) => 
           <div 
             className="product"
             key={item.id}
           >
-            <ProductItem
+            <ProductWithLog
               isInStock={item.isInStock}
               img={item.img}
               title={item.title}
-              price={item.price + ' ₽'}
-              subPriceContent={item.subPriceContent}
+              price={this.formatPrice(item.price)}
+              subPriceContent={item.oldPrice ? this.formatPrice(item.oldPrice) : ''}
               maxRating={item.maxRating}
               rating={item.rating}
               ratingComponent={ratingComponent}
@@ -46,7 +48,8 @@ class Products extends React.Component {
 
 Products.propTypes = {
   minPrice: PropTypes.number,
-  maxPrice: PropTypes.number
+  maxPrice: PropTypes.number,
+  discount: PropTypes.number
 };
 
-export default Products;
+export default logRender(Products);

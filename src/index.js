@@ -15,7 +15,8 @@ class App extends React.Component {
     const productsPrices = products.map(item => item.price);
     this.state = {
       minPrice: Math.min(...productsPrices),
-      maxPrice: Math.max(...productsPrices)
+      maxPrice: Math.max(...productsPrices),
+      discount: 0
     };
   }
 
@@ -23,6 +24,11 @@ class App extends React.Component {
     this.setState({
       minPrice: minPrice,
       maxPrice: maxPrice
+    });
+  }
+  updateDiscount = (discount) => {
+    this.setState({
+      discount: discount
     });
   }
   
@@ -38,13 +44,16 @@ class App extends React.Component {
             <Filter 
               minPrice={this.state.minPrice}
               maxPrice={this.state.maxPrice}
+              discount={this.state.discount}
               updatePriceFilter={this.updatePriceFilter}
+              updateDiscount={this.updateDiscount}
             />
           </div>
           <div className="container__center">
             <Products
               minPrice={this.state.minPrice}
               maxPrice={this.state.maxPrice}
+              discount={this.state.discount}
             />
           </div>
         </div>
