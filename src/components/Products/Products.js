@@ -11,6 +11,8 @@ const ratingComponent = ({ isFilled }) => {
   return <div className={isFilled ? "starFill" : ""} />;
 };
 
+const ProductWithLog = logRender(ProductItem);
+
 class Products extends React.Component {
   formatPrice = (number) => {
     return formatMoney(number, 0, '.', ' ') + ' ₽';
@@ -27,7 +29,7 @@ class Products extends React.Component {
             className="product"
             key={item.id}
           >
-            <ProductItem
+            <ProductWithLog
               isInStock={item.isInStock}
               img={item.img}
               title={item.title}
